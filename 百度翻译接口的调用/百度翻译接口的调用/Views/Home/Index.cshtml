@@ -1,0 +1,106 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .s_ipt_wr {
+            border: 1px solid #b6b6b6;
+            border-color: #7b7b7b #b6b6b6 #b6b6b6 #7b7b7b;
+            background: #fff;
+            display: inline-block;
+            vertical-align: top;
+            width: 539px;
+            margin-right: 0;
+            border-right-width: 0;
+            border-color: #b8b8b8 transparent #ccc #b8b8b8;
+            overflow: hidden;
+            height: 34px;
+            border: 1px solid gray;
+            padding-left: 15px;
+        }
+
+        .s_btn {
+            width: 100px;
+            height: 36px;
+            color: #fff;
+            font-size: 15px;
+            letter-spacing: 1px;
+            background: #3385ff;
+            border-bottom: 1px solid #2d78f4;
+            outline: medium;
+            -webkit-appearance: none;
+            -webkit-border-radius: 0;
+            border: 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div>
+        <input class="s_ipt_wr" id="inputText" type="text" name="name" value="" placeholder="请输入要翻译的字符" />
+        <input type="button" name="name" value="翻译成中文" id="btnToZH" class="s_btn" />
+        <input type="button" name="name" value="翻译成英文" id="btnToEN" class="s_btn" />
+        <br />
+        <br />
+        <br />
+        <span>翻译结果如下：</span>
+        <br />
+        <input class="s_ipt_wr" id="outputText" type="text" name="name" value="" />
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+
+        $("#btnToEN").click(function () {
+            var inputText = $("#inputText").val();
+
+            $.ajax({
+                type: "get",
+                url: "/Home/TranslateToEN",
+                dataType: "json",
+                data: {
+                    inputText: inputText
+                },
+                success: function (resp) {
+                    var dst = resp.data.trans_result[0].dst;
+                    $("#outputText").val(dst);
+                },
+                error: function () {
+                    alert("网络请求失败")
+                }
+
+            });
+
+        });
+
+        $("#btnToZH").click(function () {
+            var inputText = $("#inputText").val();
+
+            $.ajax({
+                type: "get",
+                url: "/Home/TranslateToZH",
+                dataType: "json",
+                data: {
+                    inputText: inputText
+                },
+                success: function (resp) {
+                    var dst = resp.data.trans_result[0].dst;
+                    $("#outputText").val(dst);
+                },
+                error: function () {
+                    alert("网络请求失败")
+                }
+
+            });
+
+        });
+    });
+</script>
