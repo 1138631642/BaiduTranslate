@@ -24,7 +24,7 @@ namespace 百度翻译接口的调用.Controllers
         public ActionResult TranslateToZH(string inputText)
         {
            
-            string url = "http://api.fanyi.baidu.com/api/trans/vip/translate?appid=20181009000216890&from=en&to=zh&";
+            string url = "http://api.fanyi.baidu.com/api/trans/vip/translate?appid=xxx&from=en&to=zh&";
 
             if (!string.IsNullOrEmpty(inputText))
             {
@@ -44,7 +44,7 @@ namespace 百度翻译接口的调用.Controllers
             }
             url += "&salt=" + salt;
 
-            string sign = "20181009000216890" + inputText + salt + "TcAihQsIFCsOdnA14NyA";
+            string sign = "xxx" + inputText + salt + "you salt";
             //sign = sign.ToLower();
             Console.WriteLine(sign);
             sign = GetMd5Hash(sign).ToLower();
@@ -61,7 +61,7 @@ namespace 百度翻译接口的调用.Controllers
         // 将英文转换为中文
         public ActionResult TranslateToEN(string inputText)
         {
-            string url = "http://api.fanyi.baidu.com/api/trans/vip/translate?appid=20181009000216890&from=zh&to=en&";
+            string url = "http://api.fanyi.baidu.com/api/trans/vip/translate?appid=xxx&from=zh&to=en&";
 
             if (!string.IsNullOrEmpty(inputText))
             {
@@ -81,7 +81,7 @@ namespace 百度翻译接口的调用.Controllers
             }
             url += "&salt=" + salt;
 
-            string sign = "20181009000216890" + inputText + salt + "TcAihQsIFCsOdnA14NyA";
+            string sign = "xxx" + inputText + salt + "you salt";
             //sign = sign.ToLower();
             Console.WriteLine(sign);
             sign = GetMd5Hash(sign).ToLower();
